@@ -8,15 +8,16 @@ p {
 }
 
 .App-header {
-    width: 100vmax;
-    height: 8vmin;
-    background: red;
+    width: calc(100vmax-0.8vmin);
+    height: 6.4vmin;
+    background: #f2b705;
+    border: 0.4vmin solid #50aed4;
 }
 
 .App-content {
     width: 100vmax;
-    height: 92vmin;
-    background: black;
+    height: 86.2vmin;
+    background: #141359;
     color: white;
     display: flex;
     flex-direction: row;
@@ -25,13 +26,14 @@ p {
 
 .App-bottom {
     width: 100vmax;
-    height: 0vmin;
-
+    height: 6.6vmin;
+    background: #141359;
 }
 
 .content {
     width: 100vmax;
-    height: 82vmin;
+    height: 79.4vmin;
+    margin: 3.4vmin 0;
     display: flex;
     flex-direction: row;
     color: white;
@@ -39,65 +41,87 @@ p {
 }
 
 .content-person {
-    width: 20vmax;
+    width: 25.5vmax;
     height: inherit;
-    background: black;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .content-person img {
-    width: 80%;
-    height: 70%;
+    width: 15.4vmax;
+    height: 15.4vmax;
     object-fit: cover;
+    margin-top: 9.4vmin;
+    margin-bottom: 4.5vmin;
+    border: 1.5vmin solid #f2b705;
+    border-radius: 100vmax;
 }
 
 .person-main-data-name {
     text-align: center;
     white-space: pre-wrap;
-    font-size: 1.7em;
-    font-weight: 600;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 4.3vmin;
+    line-height: 5.1vmin;
+}
+
+.person-main-data-age
+.person-main-data-loyalty
+.person-main-data-count {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2.6vmin;
+    line-height: 3vmin;
 }
 
 .content-chat {
     height: inherit;
-    width: 30vmax;
+    width: 30.7vmax;
     display: flex;
     flex-direction: column;
+    background: #bbb9ea;
+    border-radius: 1.5vmax 1.5vmax 1.5vmax 1.5vmax;
+    padding-bottom: 1.5vmax;
 }
 
-.chat-block {
-    height: 94%;
-    width: 98%;
-    border: 1px solid white;
-    background: #ff5555;
-    color: black;
-    font-weight: 600;
-}
 
 .chat {
     width: 100%;
     height: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    background: #352F85;
+    overflow-y: auto;
+    flex-flow: column nowrap;
 }
 
+.chat > div:first-child {
+    margin-top: auto !important;
+}
+
+.chat::-webkit-scrollbar { width: 0; }
+
 .messageToClient {
-    background: #BF8630;
+    background: #f2b705;
     align-self: flex-end;
+    color: black;
 }
 
 .messageToOperator {
-    background: #BFB630;
+    background: #2703a5;
+    color: white;
     align-self: flex-start;
 }
 
 .chat-message {
-    width: 100%;
+    width: calc(100% - 2*1vmin);
     height: 10%;
+    align-self: center;
+    margin-left: 1vmin;
+    margin-right: 1vmin;
 }
 
 .message {
@@ -134,35 +158,50 @@ p {
     height: 90%;
     width: 80%;
     resize: none;
+    border-radius: 1.5vmax 0 0 1.5vmax;
+    padding-left: 1.5vmax;
 }
 
 .chat-message button {
     height: 100%;
     width: 20%;
+    border-radius: 0 1.5vmax 1.5vmax 0;
+}
+
+.submitButton {
+    object-fit: cover;
+    height: 3vmax;
+    width: 3vmax;
 }
 
 .content-history {
     display: flex;
     flex-direction: column;
-    width: 45vmax;
+    width: 40.2vmax;
     height: inherit;
-    margin: 0 2%;
+    margin: 0 1.4vmax;
+    background: #bbb9ea;
+    border-radius: 1.5vmax 1.5vmax 1.5vmax 1.5vmax;
+    padding-bottom: 1.5vmax;
 }
 
 .history-heder {
-    width: 100%;
-    height: 6%;
+    width: inherit;
+    height: 9.4vmin;
     display: flex;
     justify-content: center;
-    align-items:flex-end;
-    background: black;
-    font-weight: bold;
-    font-size: 1.7em;
+    align-items:center;
+    color: #141259;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 2.6vmin;
+    line-height: 3vmin;
 }
 
 .history-list {
-    width: 100%;
-    height: 84.8%;
+    width: inherit;
+    height: 63.2vmin;
 }
 
 table {
@@ -171,16 +210,43 @@ table {
     border-collapse: collapse;
 }
 
+.table-header {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.6vmin;
+    line-height: 3vmin;
+    color: #141259;
+    margin-bottom: 1vmin;
+    padding: 0 2vmax;
+}
+
 .table-content {
     height: 100%;
     overflow-x: auto;
     margin-top: 0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.6vmin;
+    line-height: 3vmin;
+    color: #1B1B1B;
+    padding: 0 2vmax;
 }
-.table-content::-webkit-scrollbar { width: 0; }
 
-.table-content tr:first-child {
-    border-top: none;
+.table-content tr {
+    height: 2vmax;
 }
+
+.table-content tr:nth-of-type(even){
+  background-color: #cfb898;
+}
+
+.table-content tr:nth-of-type(odd){
+  background-color: #8678d0
+}
+
+.table-content::-webkit-scrollbar { width: 0; }
 
 .history-element {
     text-align: center;

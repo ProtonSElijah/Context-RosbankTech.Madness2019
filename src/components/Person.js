@@ -3,7 +3,7 @@ import React from 'react';
 const Person = ({person}) => {
     return (
         <div className="content-person">
-            <img src={person.photo}/>
+            <img src={person.picURL ? person.picURL : ""}/>
             <div className="person-main-data-name">
                 {person.name}
             </div>
@@ -11,7 +11,7 @@ const Person = ({person}) => {
                 {`${person.age} года, ${person.city}`}
             </div>
             <div className="person-main-data-loyalty">
-                {`${person.loyalty}%`}
+                {`Градус лояльности: ${100 - person.toxicPercent}%`}
             </div>
             <div className="person-main-data-count">
                 {`Всего обращений: `}
