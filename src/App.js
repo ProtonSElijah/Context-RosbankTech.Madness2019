@@ -26,152 +26,147 @@ function App() {
                 </div>
                 <div className="content-history">
                     <div className="history-heder">{"ИСТОРИЯ ОБРАЩЕНИЙ"}</div>
+
                     <div className="history-list">
-                        <table width="100%" height="5%" border="1">
-                            <colgroup>
-                                <col id="Data" width="20%"/>
-                                <col id="Theme" width="50%"/>
-                                <col id="LoyaltyDegree" width="30%"/>
-                            </colgroup>
-                            <thead>
-                            <tr>
-                                <th scope="col" className="history-themes">Дата</th>
-                                <th scope="col" className="history-themes">Тема</th>
-                                <th scope="col" className="history-themes">Градус лояльности</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr className="history-element">
-                                <td>{"03.11.2019"}</td>
-                                <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                <td>{"73"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"08.11.2019"}</td>
-                                <td className="history-element-theme">{"Верификация документа"}</td>
-                                <td>{"11"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"10.11.2019"}</td>
-                                <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                <td>{"18"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"03.11.2019"}</td>
-                                <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                <td>{"73"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"08.11.2019"}</td>
-                                <td className="history-element-theme">{"Верификация документа"}</td>
-                                <td>{"11"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"10.11.2019"}</td>
-                                <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                <td>{"18"}</td>
-                            </tr><tr className="history-element">
-                                <td>{"03.11.2019"}</td>
-                                <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                <td>{"73"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"08.11.2019"}</td>
-                                <td className="history-element-theme">{"Верификация документа"}</td>
-                                <td>{"11"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"10.11.2019"}</td>
-                                <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                <td>{"18"}</td>
-                            </tr><tr className="history-element">
-                                <td>{"03.11.2019"}</td>
-                                <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                <td>{"73"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"08.11.2019"}</td>
-                                <td className="history-element-theme">{"Верификация документа"}</td>
-                                <td>{"11"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"10.11.2019"}</td>
-                                <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                <td>{"18"}</td>
-                            </tr><tr className="history-element">
-                                <td>{"03.11.2019"}</td>
-                                <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                <td>{"73"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"08.11.2019"}</td>
-                                <td className="history-element-theme">{"Верификация документа"}</td>
-                                <td>{"11"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"10.11.2019"}</td>
-                                <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                <td>{"18"}</td>
-                            </tr><tr className="history-element">
-                                <td>{"03.11.2019"}</td>
-                                <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                <td>{"73"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"08.11.2019"}</td>
-                                <td className="history-element-theme">{"Верификация документа"}</td>
-                                <td>{"11"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"10.11.2019"}</td>
-                                <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                <td>{"18"}</td>
-                            </tr><tr className="history-element">
-                                <td>{"03.11.2019"}</td>
-                                <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                <td>{"73"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"08.11.2019"}</td>
-                                <td className="history-element-theme">{"Верификация документа"}</td>
-                                <td>{"11"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"10.11.2019"}</td>
-                                <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                <td>{"18"}</td>
-                            </tr><tr className="history-element">
-                                <td>{"03.11.2019"}</td>
-                                <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                <td>{"73"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"08.11.2019"}</td>
-                                <td className="history-element-theme">{"Верификация документа"}</td>
-                                <td>{"11"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"10.11.2019"}</td>
-                                <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                <td>{"18"}</td>
-                            </tr><tr className="history-element">
-                                <td>{"03.11.2019"}</td>
-                                <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                <td>{"73"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"08.11.2019"}</td>
-                                <td className="history-element-theme">{"Верификация документа"}</td>
-                                <td>{"11"}</td>
-                            </tr>
-                            <tr className="history-element">
-                                <td>{"10.11.2019"}</td>
-                                <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                <td>{"18"}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                       <div className="table-header">
+                           <table cellpadding="0" cellspacing="0" border="1">
+                               <thead>
+                                    <tr>
+                                        <th className="history-themes" width="25%">Дата</th>
+                                        <th className="history-themes" width="50%">Тема</th>
+                                        <th className="history-themes" width="25%">Градус лояльности</th>
+                                    </tr>
+                                </thead>
+                           </table>
+                       </div>
+                       <div className="table-content">
+                           <table cellpadding="0" cellspacing="0" border="1">
+                               <tbody>
+                                    <tr className="history-element">
+                                        <td width="25%">{"03.11.2019"}</td>
+                                        <td className="history-element-theme" width="50%">{"Авторизация в мобильном приложении"}</td>
+                                        <td width="25%">{"73"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"08.11.2019"}</td>
+                                        <td className="history-element-theme">{"Верификация документа"}</td>
+                                        <td>{"11"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"10.11.2019"}</td>
+                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
+                                        <td>{"18"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"03.11.2019"}</td>
+                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
+                                        <td>{"73"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"08.11.2019"}</td>
+                                        <td className="history-element-theme">{"Верификация документа"}</td>
+                                        <td>{"11"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"10.11.2019"}</td>
+                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
+                                        <td>{"18"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"03.11.2019"}</td>
+                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
+                                        <td>{"73"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"08.11.2019"}</td>
+                                        <td className="history-element-theme">{"Верификация документа"}</td>
+                                        <td>{"11"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"10.11.2019"}</td>
+                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
+                                        <td>{"18"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"03.11.2019"}</td>
+                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
+                                        <td>{"73"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"08.11.2019"}</td>
+                                        <td className="history-element-theme">{"Верификация документа"}</td>
+                                        <td>{"11"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"10.11.2019"}</td>
+                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
+                                        <td>{"18"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"03.11.2019"}</td>
+                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
+                                        <td>{"73"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"08.11.2019"}</td>
+                                        <td className="history-element-theme">{"Верификация документа"}</td>
+                                        <td>{"11"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"10.11.2019"}</td>
+                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
+                                        <td>{"18"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"03.11.2019"}</td>
+                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
+                                        <td>{"73"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"08.11.2019"}</td>
+                                        <td className="history-element-theme">{"Верификация документа"}</td>
+                                        <td>{"11"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"10.11.2019"}</td>
+                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
+                                        <td>{"18"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"03.11.2019"}</td>
+                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
+                                        <td>{"73"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"08.11.2019"}</td>
+                                        <td className="history-element-theme">{"Верификация документа"}</td>
+                                        <td>{"11"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"10.11.2019"}</td>
+                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
+                                        <td>{"18"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"03.11.2019"}</td>
+                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
+                                        <td>{"73"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"08.11.2019"}</td>
+                                        <td className="history-element-theme">{"Верификация документа"}</td>
+                                        <td>{"11"}</td>
+                                    </tr>
+                                    <tr className="history-element">
+                                        <td>{"10.11.2019"}</td>
+                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
+                                        <td>{"18"}</td>
+                                    </tr>
+                               </tbody>
+                           </table>
+                       </div>
                     </div>
+
                 </div>
             </div>
         </div>
