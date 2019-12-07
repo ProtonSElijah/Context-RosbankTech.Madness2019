@@ -1,39 +1,45 @@
+p {
+    margin: 0;
+}
+
 .App {
-    width: 100%;
-    height: 100%;
+    width: 100vmax;
+    height: 100vmin;
 }
 
 .App-header {
-    width: 100%;
+    width: 100vmax;
     height: 8vmin;
     background: red;
 }
 
 .App-content {
-    width: 100%;
-    height: 84vmin;
+    width: 100vmax;
+    height: 92vmin;
     background: black;
+    color: white;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
 .App-bottom {
-    width: 100%;
-    height: 8vmin;
-    background: red;
+    width: 100vmax;
+    height: 0vmin;
+
 }
 
 .content {
-    width: 80%;
-    height: inherit;
+    width: 100vmax;
+    height: 82vmin;
     display: flex;
     flex-direction: row;
     color: white;
+    margin-top: 2vmin;
 }
 
 .content-person {
-    width: 30%;
+    width: 20vmax;
     height: inherit;
     background: black;
     display: flex;
@@ -42,7 +48,6 @@
 }
 
 .content-person img {
-    margin-top: 5%;
     width: 80%;
     height: 70%;
     object-fit: cover;
@@ -55,11 +60,93 @@
     font-weight: 600;
 }
 
+.content-chat {
+    height: inherit;
+    width: 30vmax;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-block {
+    height: 94%;
+    width: 98%;
+    border: 1px solid white;
+    background: #ff5555;
+    color: black;
+    font-weight: 600;
+}
+
+.chat {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: #352F85;
+}
+
+.messageToClient {
+    background: #BF8630;
+    align-self: flex-end;
+}
+
+.messageToOperator {
+    background: #BFB630;
+    align-self: flex-start;
+}
+
+.chat-message {
+    width: 100%;
+    height: 10%;
+}
+
+.message {
+    max-width: 70%;
+    margin: 0 1vmin 1vmin 1vmin;
+    padding: 0.5vmin 1vmin;
+    border-radius: 10px;
+}
+
+.message p:first-child {
+    font-size: 0.8em;
+    word-wrap: break-word;
+}
+
+.messageTimeToClient {
+    float: right;
+    color:firebrick;
+    font-size: 0.6em;
+}
+
+.messageTimeToOperator {
+    float: left;
+    color: firebrick;
+    font-size: 0.6em;
+}
+
+.chat-message form {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.chat-message textarea {
+    height: 90%;
+    width: 80%;
+    resize: none;
+}
+
+.chat-message button {
+    height: 100%;
+    width: 20%;
+}
+
 .content-history {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 45vmax;
     height: inherit;
+    margin: 0 2%;
 }
 
 .history-heder {
@@ -67,7 +154,7 @@
     height: 6%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items:flex-end;
     background: black;
     font-weight: bold;
     font-size: 1.7em;
@@ -75,13 +162,13 @@
 
 .history-list {
     width: 100%;
-    height: 89%;
-
+    height: 84.8%;
 }
 
 table {
     width: 100%;
     table-layout: fixed;
+    border-collapse: collapse;
 }
 
 .table-content {
