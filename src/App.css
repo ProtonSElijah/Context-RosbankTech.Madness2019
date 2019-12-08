@@ -139,13 +139,13 @@ p {
 .messageTimeToClient {
     float: right;
     color:firebrick;
-    font-size: 0.6em;
+    font-size: 1em;
 }
 
 .messageTimeToOperator {
     float: left;
     color: firebrick;
-    font-size: 0.6em;
+    font-size: 1em;
 }
 
 .chat-message form {

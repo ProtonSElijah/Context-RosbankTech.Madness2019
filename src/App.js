@@ -66,7 +66,8 @@ const App = () => {
             setMessages(messages.concat({
                 who: "client",
                 content: data.entry,
-                time: `${(new Date()).getHours()}:${(new Date()).getMinutes()}  ${Math.round(((1-data.emotion)*100).toString(), 2)}ГЛ`}));
+              /*  time: `${(new Date()).getHours()}:${(new Date()).getMinutes()}  ${Math.round(((1-data.emotion)*100).toString(), 2)}ГЛ`}));*/
+                time: `${Math.round(((1-data.emotion)*100).toString(), 2)}ГЛ`}));
         });
     };
 
