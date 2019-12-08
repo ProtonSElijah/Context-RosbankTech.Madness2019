@@ -90,7 +90,7 @@ public class SupportChat extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("network-err", error.getMessage() == null ? error.getMessage(): "test");
+                Log.e("network-err", error.getMessage() == null ? "test" : error.getMessage());
             }
         });
 
@@ -123,7 +123,7 @@ public class SupportChat extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("network-err", error.getMessage() == null? error.getMessage(): "volley error");
+                        Log.e("network-err", error.getMessage() == null ? "volley error" : error.getMessage());
                     }
                 });
             }
