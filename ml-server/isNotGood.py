@@ -5,6 +5,7 @@ import pickle
 # loading model
 model = load_model('toxic_model80-20.h5')
 # loading tokenizer for model
+
 with open('tokenizer80-20.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
