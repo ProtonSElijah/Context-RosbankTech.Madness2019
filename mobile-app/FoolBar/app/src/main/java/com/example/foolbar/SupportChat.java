@@ -16,8 +16,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -64,27 +68,30 @@ public class SupportChat extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://192.168.43.76:8080/newError";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("network-response", response);
-                    }
-                },
-                new Response.ErrorListener() {
+        JSONObject jsonlog = new JSONObject();
+        try {
+            jsonlog.put("log", clientProblemText);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, jsonlog, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Log.d("network-ans-json", response.toString(4));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("network-error", error.getMessage());
+                Log.e("network-err", error.getMessage());
             }
-        }) {
-            @Override
-            public byte[] getBody() throws AuthFailureError {
-                Log.d("network", "getBody");
-                return clientProblemText.getBytes();
-            }
-        };
+        });
 
-        queue.add(postRequest);
+        queue.add(jsonobj);
 
     }
 }
