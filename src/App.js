@@ -3,16 +3,35 @@ import './App.css';
 
 import Person from './components/Person.js';
 import OnlineChat from './components/OnlineChat.js';
+import PersonHistory from './components/PersonHistory.js';
+import OfflineChat from './components/OfflineChat.js';
 
 const App = () => {
     const [messageToClient, setMessageToClient] = useState("");
     const [messages, setMessages] = useState([]);
     const [person, setPerson] = useState({});
+    const [personHistory, setPersonHistory] = useState(null);
+    const [historyPanel, setHistoryPanel] = useState(null);
+    const [offlineChatPanel, setOfflineChatPanel] = useState(null);
+    const [offlineMessage, setOfflineMessage] = useState(null);
+
+    const [clientMessages, setClientMessages] = useState([]);
+    const [themeMessages, setThemeMessages] = useState("");
+
 
     const LOCAL_SERVER = "192.168.43.76";
+    const USER_NAME = "Пушистик Котофей Котофеевич";
 
     useEffect(() => {
-        fetch(`http://${LOCAL_SERVER}:8080/clients/Восьмибитный Дед`, {
+        getHistory();
+        getPerson();
+        Alldoing();
+        setHistoryPanel(document.getElementById("history"));
+        setOfflineChatPanel(document.getElementById("offline_chat"));
+    }, []);
+
+    const getPerson = () => {
+        fetch(`http://${LOCAL_SERVER}:8080/clients/${USER_NAME}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -20,16 +39,36 @@ const App = () => {
             })
         .then(response => response.json())
         .then(data => setPerson(data));
+    };
 
-        fetch(`http://${LOCAL_SERVER}:8080/byName/Восьмибитный Дед`, {
+    const getHistory = () => {
+        fetch(`http://${LOCAL_SERVER}:8080/tickets/byName/${USER_NAME}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
             },
             })
         .then(response => response.json())
-        .then(data => console.log(data));
-    }, []);
+        .then(data => setPersonHistory(data));
+    };
+
+    const Alldoing = () => {
+        fetch(`http://${LOCAL_SERVER}:8080/chatResponse`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                })
+            .then(response => response.json())
+            .then(data => {
+            setClientMessages(clientMessages.concat(data.entry));
+            console.log(messages);
+            setMessages(messages.concat({
+                who: "client",
+                content: data.entry,
+                time: `${(new Date()).getHours()}:${(new Date()).getMinutes()}  ${Math.round(((1-data.emotion)*100).toString(), 2)}ГЛ`}));
+        });
+    };
 
     const onChangeMessageToClient = e => {
         if (e.currentTarget.value == "\n") e.currentTarget.value = e.currentTarget.value.slice(0, e.currentTarget.value.length - 1);
@@ -38,10 +77,12 @@ const App = () => {
 
     const submitMessageToClient = e => {
         if (messageToClient != "") {
-            setMessageToClient("");
-            setMessages(messages.concat({
+            messages.push({
+                who: "operator",
                 content: messageToClient,
-                time: `${(new Date()).getHours()}:${(new Date()).getMinutes()}`}));
+                time: `${(new Date()).getHours()}:${(new Date()).getMinutes()}`});
+            Alldoing();
+            setMessageToClient("");
             document.getElementById("onlineChat").scrollTop = document.getElementById("onlineChat").scrollHeight;
         }
         e.preventDefault();
@@ -49,181 +90,79 @@ const App = () => {
 
     const pressEnter = e => {
         if (e.key == "Enter" && messageToClient !== "") {
-            setMessageToClient("");
-            setMessages(messages.concat({
+            messages.push({
+                who: "operator",
                 content: messageToClient,
-                time: `${(new Date()).getHours()}:${(new Date()).getMinutes()}`}));
+                time: `${(new Date()).getHours()}:${(new Date()).getMinutes()}`});
+            Alldoing();
+            setMessageToClient("");
             document.getElementById("onlineChat").scrollTop = document.getElementById("onlineChat").scrollHeight;
         }
     };
 
+    const change = e => {
+        if (e.currentTarget.dataset) setOfflineMessage(e.currentTarget.dataset.message);
+        historyPanel.classList.toggle("hidden");
+        offlineChatPanel.classList.toggle("hidden");
+        e.preventDefault();
+    };
 
+    const onTheme = e => {
+        setThemeMessages(e.currentTarget.value);
+    };
+
+    const say_years_russian = (count) => {
+        count %= 100;
+        if (11 <= count && count <= 19) {
+            return "лет";
+        }
+        count %= 10;
+        if (count == 0) {
+            return "лет";
+        }
+        if (count == 1) {
+            return "год";
+        }
+        if (count < 5) {
+            return "года";
+        }
+        return "лет";
+    };
+
+    const pushDataRequest = e => {
+        fetch(`http://${LOCAL_SERVER}:8080/tickets/newEntry/${USER_NAME}`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                    body: JSON.stringify({
+                        chat: clientMessages.toString(),
+                         date: ("08.12.2019"),
+                         theme: themeMessages})
+                });
+    };
 
   return (
     <div className="App">
-        <div className="App-header">
+        <div className="App-header"></div>
 
-        </div>
         <div className="App-content">
             <div className="content">
-                <Person person={person} />
+                { personHistory &&
+                <Person person={person} count={personHistory.length} onTheme={onTheme} pushDataRequest={pushDataRequest} years={say_years_russian}/>}
                 <OnlineChat
                     messages={messages}
                     messageToClient={messageToClient}
                     onChangeMessageToClient={onChangeMessageToClient}
                     pressEnter={pressEnter}
-                    submitMessageToClient={submitMessageToClient}/>
-
-
-                <div className="content-history">
-                    <div className="history-heder">{"ИСТОРИЯ ОБРАЩЕНИЙ"}</div>
-
-                    <div className="history-list">
-                       <div className="table-header">
-                           <table cellPadding="0" cellSpacing="0" border="0">
-                               <thead>
-                                    <tr>
-                                        <th className="history-themes" width="20%">Дата</th>
-                                        <th className="history-themes" width="70%">Тема</th>
-                                        <th className="history-themes" width="10%">ГЛ</th>
-                                    </tr>
-                                </thead>
-                           </table>
-                       </div>
-                       <div className="table-content">
-                           <table cellPadding="0" cellSpacing="0" border="0">
-                               <tbody>
-                                    <tr className="history-element">
-                                        <td width="20%">{"03.11.2019"}</td>
-                                        <td className="history-element-theme" width="70%">{"Авторизация в мобильном приложении"}</td>
-                                        <td width="10%">{"73"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"08.11.2019"}</td>
-                                        <td className="history-element-theme">{"Верификация документа"}</td>
-                                        <td>{"11"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"10.11.2019"}</td>
-                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                        <td>{"18"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"03.11.2019"}</td>
-                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                        <td>{"73"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"08.11.2019"}</td>
-                                        <td className="history-element-theme">{"Верификация документа"}</td>
-                                        <td>{"11"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"10.11.2019"}</td>
-                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                        <td>{"18"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"03.11.2019"}</td>
-                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                        <td>{"73"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"08.11.2019"}</td>
-                                        <td className="history-element-theme">{"Верификация документа"}</td>
-                                        <td>{"11"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"10.11.2019"}</td>
-                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                        <td>{"18"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"03.11.2019"}</td>
-                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                        <td>{"73"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"08.11.2019"}</td>
-                                        <td className="history-element-theme">{"Верификация документа"}</td>
-                                        <td>{"11"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"10.11.2019"}</td>
-                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                        <td>{"18"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"03.11.2019"}</td>
-                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                        <td>{"73"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"08.11.2019"}</td>
-                                        <td className="history-element-theme">{"Верификация документа"}</td>
-                                        <td>{"11"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"10.11.2019"}</td>
-                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                        <td>{"18"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"03.11.2019"}</td>
-                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                        <td>{"73"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"08.11.2019"}</td>
-                                        <td className="history-element-theme">{"Верификация документа"}</td>
-                                        <td>{"11"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"10.11.2019"}</td>
-                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                        <td>{"18"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"03.11.2019"}</td>
-                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                        <td>{"73"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"08.11.2019"}</td>
-                                        <td className="history-element-theme">{"Верификация документа"}</td>
-                                        <td>{"11"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"10.11.2019"}</td>
-                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                        <td>{"18"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"03.11.2019"}</td>
-                                        <td className="history-element-theme">{"Авторизация в мобильном приложении"}</td>
-                                        <td>{"73"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"08.11.2019"}</td>
-                                        <td className="history-element-theme">{"Верификация документа"}</td>
-                                        <td>{"11"}</td>
-                                    </tr>
-                                    <tr className="history-element">
-                                        <td>{"10.11.2019"}</td>
-                                        <td className="history-element-theme">{"Перевод между счетами внутри банка"}</td>
-                                        <td>{"18"}</td>
-                                    </tr>
-                               </tbody>
-                           </table>
-                       </div>
-                    </div>
-
-                </div>
+                    submitMessageToClient={submitMessageToClient}
+                    onHistory={getHistory()}/>
+                <PersonHistory personHistory={personHistory} choice={change}/>
+                <OfflineChat back={change} message={offlineMessage}/>
             </div>
         </div>
-        <div className="App-bottom">
 
-        </div>
+        <div className="App-bottom"></div>
     </div>
   );
 }

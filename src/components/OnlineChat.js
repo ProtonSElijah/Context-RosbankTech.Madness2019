@@ -5,10 +5,6 @@ const OnlineChat = ({messages, messageToClient, onChangeMessageToClient, pressEn
     return (
         <div className="content-chat">
            <div id="onlineChat" className="chat">
-               <div className="message messageToOperator">
-                   <p>{"Здравствуйте, у меня проблема, памагити пожалуйста"}</p>
-                   <p className="messageTimeToOperator">вчера</p>
-               </div>
                <Messages messages={messages}/>
            </div>
             <div className="chat-message">

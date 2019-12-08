@@ -234,8 +234,9 @@ table {
     padding: 0 2vmax;
 }
 
-.table-content tr {
-    height: 2vmax;
+.table-content table {
+    border-spacing: 0px 1.5vmin;
+    border-collapse: separate;
 }
 
 .table-content tr:nth-of-type(even){
@@ -254,4 +255,66 @@ table {
 
 .history-element-theme {
     text-align: left;
+}
+
+#offline_chat {
+    width: 30.7;
+    height: inherit;
+    margin-left: 6.1vmax;
+}
+
+#offline_chat.hidden {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+}
+
+.offline-chat-message {
+    width: 100%;
+    height: 10%;
+    align-self: center;
+    background: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vmax;
+}
+
+.offline-chat-message:hover {
+    background: #4444;
+    cursor: pointer;
+}
+
+.hidden {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+}
+
+
+.content-person input{
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
+}
+
+td:first-child {
+    border-left-style: none;
+    border-top-left-radius: 5vmax;
+    border-bottom-left-radius: 10vmax;
+}
+
+td:last-child {
+    border-right-style: none;
+    border-bottom-right-radius: 5vmax;
+    border-top-right-radius: 10vmax;;
+}
+
+tr:hover {
+    font-size: 1.5vmax;
+    cursor: pointer;
 }
