@@ -68,6 +68,7 @@ public class SupportChat extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://192.168.43.76:8080/newError";
+<<<<<<< HEAD
         JSONObject jsonlog = new JSONObject();
         try {
             jsonlog.put("log", clientProblemText);
@@ -92,6 +93,29 @@ public class SupportChat extends AppCompatActivity {
         });
 
         queue.add(jsonobj);
+=======
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("network-response", response);
+                    }
+                },
+                new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("network-error", error.getMessage());
+            }
+        }) {
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                Log.d("network", "getBody");
+                return clientProblemText.getBytes();
+            }
+        };
+
+        queue.add(postRequest);
+>>>>>>> mobile-app
 
     }
 }
