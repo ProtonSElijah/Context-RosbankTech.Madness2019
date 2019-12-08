@@ -9,6 +9,9 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -68,7 +71,6 @@ public class SupportChat extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://192.168.43.76:8080/newError";
-<<<<<<< HEAD
         JSONObject jsonlog = new JSONObject();
         try {
             jsonlog.put("log", clientProblemText);
@@ -88,34 +90,47 @@ public class SupportChat extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("network-err", error.getMessage());
+                Log.e("network-err", error.getMessage() == null ? error.getMessage(): "test");
             }
         });
 
         queue.add(jsonobj);
-=======
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("network-response", response);
-                    }
-                },
-                new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("network-error", error.getMessage());
-            }
-        }) {
-            @Override
-            public byte[] getBody() throws AuthFailureError {
-                Log.d("network", "getBody");
-                return clientProblemText.getBytes();
-            }
-        };
 
-        queue.add(postRequest);
->>>>>>> mobile-app
+        Button sendButton = (Button) findViewById(R.id.send_message);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://192.168.43.76:8080/newError";
+                EditText et = (EditText) findViewById(R.id.support_chat_textfield);
+                String clientMessage = et.getText().toString();
+                et.setText("");
+                JSONObject jsonlog = new JSONObject();
+                try {
+                    jsonlog.put("log", clientMessage);
+                } catch (JSONException e) {
+                    Log.e("network-button", "problem with jsonlog.put");
+                    e.printStackTrace();
+                }
+                JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, jsonlog, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Log.d("network-ans-json", response.toString(4));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("network-err", error.getMessage() == null? error.getMessage(): "volley error");
+                    }
+                });
+            }
+        });
 
     }
+
+
+
 }
